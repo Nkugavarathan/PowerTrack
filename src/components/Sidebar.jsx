@@ -8,6 +8,7 @@ import {
   FileText,
   Cpu,
   Lightbulb,
+  User,
   Settings,
   HelpCircle,
 } from 'lucide-react'
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
 ]
 
 const BOTTOM_ITEMS = [
+  { label: 'User Profile', href: '/user-profile', icon: User },
   { label: 'Settings', href: '/settings', icon: Settings },
   { label: 'Support', href: '/support', icon: HelpCircle },
 ]
@@ -28,13 +30,13 @@ function NavLink({ label, href, icon: Icon, active }) {
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+      className={`flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium transition-all ${
         active
-          ? 'bg-[#10DB91]/10 text-[#10DB91]'
-          : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
+          ? 'bg-[#10B981] text-[#07110b] shadow-[0_12px_30px_rgba(16,185,129,0.25)]'
+          : 'text-slate-400 hover:bg-white/5 hover:text-slate-100'
       }`}
     >
-      <Icon className="h-4 w-4 shrink-0" />
+      <Icon className="h-5 w-5 shrink-0" />
       <span>{label}</span>
     </Link>
   )
@@ -49,25 +51,19 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="flex w-52 shrink-0 flex-col justify-between border-r border-[#F9BE0B]/50 bg-[#0B1326]/70 p-4">
-      {/* Brand */}
+    <aside className="flex w-full shrink-0 flex-col border-r border-white/5 bg-[#0C1220]/90 px-4 py-5 backdrop-blur-xl lg:sticky lg:top-0 lg:h-screen lg:w-64">
       <div>
-        <div className="mb-1 flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#10DB91]/20 text-[#10DB91]">
+        <div className="mb-10 flex items-start gap-3 px-2 pt-1">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#10B981]/14 text-[#10B981] ring-1 ring-[#10B981]/20">
             <Zap className="h-5 w-5" />
           </div>
-          <p className="text-sm font-bold leading-tight text-[#10DB91]">
-            PowerTrack
-            <br />
-            SL
-          </p>
+          <div>
+            <div className="text-lg font-bold tracking-tight text-[#10B981]">PowerTrack SL</div>
+            <div className="mt-1 text-xs font-medium text-slate-400">Smart Energy Management</div>
+          </div>
         </div>
-        <p className="mb-8 pl-10 text-[9px] font-semibold uppercase tracking-widest text-slate-500">
-          Smart Energy Management
-        </p>
 
-        {/* Main nav */}
-        <nav className="space-y-1">
+        <nav className="space-y-1.5">
           {NAV_ITEMS.map(({ label, href, icon }) => (
             <NavLink
               key={href}
@@ -80,8 +76,9 @@ export default function Sidebar() {
         </nav>
       </div>
 
-      {/* Bottom nav */}
-      <div className="space-y-1 border-t border-slate-800/80 pt-4">
+      <div className="mt-6 space-y-4 lg:mt-auto">
+        <div className="h-px bg-white/8" />
+        <nav className="space-y-1.5">
         {BOTTOM_ITEMS.map(({ label, href, icon }) => (
           <NavLink
             key={href}
@@ -91,6 +88,7 @@ export default function Sidebar() {
             active={isActive(href)}
           />
         ))}
+        </nav>
       </div>
     </aside>
   )

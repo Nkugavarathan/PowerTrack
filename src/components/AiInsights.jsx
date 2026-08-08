@@ -1545,7 +1545,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react';
-import Sidebar from '@/components/Sidebar';
+import AppShell from '@/components/AppShell';
 import {
   Zap,
   TrendingUp,
@@ -2470,22 +2470,18 @@ export default function AIInsightsDashboard() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#0B1326] p-2 font-sans text-slate-100 sm:p-4 md:p-6">
-      <div className="flex h-[860px] w-full max-w-[1280px] overflow-hidden rounded-2xl border border-slate-800/80 bg-[#0F172A] shadow-2xl">
-        <Sidebar />
-        <div className="flex flex-1 flex-col overflow-hidden">
-        <DashboardHeader />
-
+    <AppShell title="AI Insights & Assistant" subtitle={`Tariff Cycle: ${MOCK_USAGE_SNAPSHOT.cycleLabel}`}>
+      <div className="mx-auto w-full max-w-6xl">
         {/* Two-column body: advice column + chat column */}
-        <div className="grid flex-1 grid-cols-1 overflow-hidden lg:grid-cols-12">
+        <div className="grid min-h-[calc(100vh-11rem)] grid-cols-1 overflow-hidden rounded-2xl border border-white/6 bg-[#0F172A]/90 lg:grid-cols-12">
           {/* ================= LEFT: Cost + Advice ================= */}
-          <section className="custom-scrollbar flex flex-col gap-5 overflow-y-auto border-r border-slate-800/80 bg-[#0F172A]/50 p-5 lg:col-span-5">
+          <section className="custom-scrollbar flex flex-col gap-5 overflow-y-auto border-b border-slate-800/80 bg-[#0F172A]/55 p-5 lg:col-span-5 lg:border-b-0 lg:border-r">
             <CostPredictionCard />
             <OptimizationAdviceCard appliedIds={appliedActionIds} onApply={applyAction} />
           </section>
 
           {/* ================= RIGHT: Chat Assistant ================= */}
-          <section className="relative flex flex-col overflow-hidden bg-[#0F172A] lg:col-span-7">
+          <section className="relative flex min-h-[28rem] flex-col overflow-hidden bg-[#0F172A] lg:col-span-7">
             <ChatPanelHeader onClear={handleClearChat} />
 
             <div className="custom-scrollbar flex-1 space-y-4 overflow-y-auto p-4 sm:p-6">
@@ -2520,9 +2516,8 @@ export default function AIInsightsDashboard() {
             </div>
           </section>
         </div>
-        </div>
       </div>
-    </div>
+    </AppShell>
   );
 }
 
