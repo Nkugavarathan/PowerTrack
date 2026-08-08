@@ -1545,6 +1545,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react';
+import Sidebar from '@/components/Sidebar';
 import {
   Zap,
   TrendingUp,
@@ -2470,8 +2471,9 @@ export default function AIInsightsDashboard() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#0B1326] p-2 font-sans text-slate-100 sm:p-4 md:p-6">
-      {/* Dashboard shell-sidebar intentionally omitted per spec */}
-      <div className="flex h-[860px] w-full max-w-[1280px] flex-col overflow-hidden rounded-2xl border border-slate-800/80 bg-[#0F172A] shadow-2xl">
+      <div className="flex h-[860px] w-full max-w-[1280px] overflow-hidden rounded-2xl border border-slate-800/80 bg-[#0F172A] shadow-2xl">
+        <Sidebar />
+        <div className="flex flex-1 flex-col overflow-hidden">
         <DashboardHeader />
 
         {/* Two-column body: advice column + chat column */}
@@ -2517,6 +2519,7 @@ export default function AIInsightsDashboard() {
               />
             </div>
           </section>
+        </div>
         </div>
       </div>
     </div>
